@@ -3,6 +3,7 @@ package com.niles.CAR.controller;
 import com.niles.CAR.domain.Driver;
 import com.niles.CAR.dto.RetrieveDriverDto;
 import com.niles.CAR.services.DriverService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(name = "/drivers")
+@RequestMapping(value = "/drivers")
 public class DriverController {
 
+    @Autowired
     private DriverService service;
 
     @GetMapping
@@ -25,7 +27,7 @@ public class DriverController {
         return ResponseEntity.ok().body(dtoDrivers);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<RetrieveDriverDto> findById(@PathVariable Long id) {
         RetrieveDriverDto driver = service.findById(id);
         return ResponseEntity.ok().body(driver);
