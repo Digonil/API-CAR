@@ -1,5 +1,6 @@
 package com.niles.CAR.domain;
 
+import com.niles.CAR.dto.CreateDriverDto;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -19,11 +20,16 @@ public class Driver {
 
     }
 
-    public Driver(Long id, String name, Date birthDate) {
-        this.id = id;
+    public Driver(String name, Date birthDate) {
         this.name = name;
         this.birthDate = birthDate;
     }
+
+    public Driver(CreateDriverDto dto) {
+        this.name = dto.getName();
+        this.birthDate = dto.getBirthDate();
+    }
+
 
     public Long getId() {
         return id;
