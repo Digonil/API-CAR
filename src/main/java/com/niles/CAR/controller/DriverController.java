@@ -2,6 +2,7 @@ package com.niles.CAR.controller;
 
 import com.niles.CAR.dto.CreateDriverDto;
 import com.niles.CAR.dto.RetrieveDriverDto;
+import com.niles.CAR.dto.UpdateDriverDto;
 import com.niles.CAR.services.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +38,17 @@ public class DriverController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
                 buildAndExpand(driver.getId()).toUri();
         return ResponseEntity.created(uri).body(driver);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<UpdateDriverDto> updateDriver(@PathVariable Long id, @RequestBody UpdateDriverDto dto) {
+        UpdateDriverDto driverDto = service.updateDriver(id, dto);
+        return ResponseEntity.ok().body(driverDto);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteDriver(@PathVariable Long id) {
+        service.deleteDriver(id);
+        return ResponseEntity.noContent().build();
     }
 }

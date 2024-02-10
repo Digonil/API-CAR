@@ -4,6 +4,7 @@ import com.niles.CAR.domain.Driver;
 import com.niles.CAR.domain.DriverRepository;
 import com.niles.CAR.dto.CreateDriverDto;
 import com.niles.CAR.dto.RetrieveDriverDto;
+import com.niles.CAR.dto.UpdateDriverDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,25 @@ public class DriverService {
         return new RetrieveDriverDto(saveDriver);
     }
 
+    @Transactional
+    public UpdateDriverDto updateDriver(Long id, UpdateDriverDto dto) {
+        Driver driver = repository.getReferenceById(id);
+        entityToDto(driver, dto);
+        driver = repository.save(driver);
+        return new UpdateDriverDto(driver);
+    }
 
+    @Transactional
+    public void deleteDriver(Long id) {
+        if (id != null) {
+            Driver driver = repository.getReferenceById(id);
+            repository.delete(driver);
+        }
+    }
+
+
+    private void entityToDto(Driver driver, UpdateDriverDto dto) {
+        driver.setName(dto.getName());
+        driver.setBirthDate(dto.getBirthDate());
+    }
 }
