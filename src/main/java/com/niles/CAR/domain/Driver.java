@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_driver")
-public class Driver {
+public class Passenger {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
