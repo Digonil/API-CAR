@@ -2,8 +2,6 @@ package com.niles.CAR.dto;
 
 import com.niles.CAR.domain.Passenger;
 
-import java.util.Date;
-
 public class RetrievePassengerDto {
 
     private Long id;

@@ -1,5 +1,6 @@
 package com.niles.CAR.domain;
 
+import com.niles.CAR.dto.CreatePassengerDto;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -19,6 +20,10 @@ public class Passenger {
     public Passenger(Long id, String name) {
         Id = id;
         this.name = name;
+    }
+
+    public Passenger(CreatePassengerDto dto) {
+        this.name = dto.getName();
     }
 
     public Long getId() {
