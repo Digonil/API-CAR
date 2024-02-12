@@ -54,7 +54,7 @@ public class PassengerService {
     }
 
     @Transactional
-    public void deleteDriver(Long id) {
+    public void deletePassenger(Long id) {
         if (id != null) {
             Passenger passenger = repository.getReferenceById(id);
             repository.delete(passenger);
@@ -62,7 +62,7 @@ public class PassengerService {
     }
 
 
-    private void entityToDto(Passenger driver, UpdatePassengerDto dto) {
-        driver.setName(dto.getName());
+    private void entityToDto(Passenger passenger, UpdatePassengerDto dto) {
+        passenger.setName(dto.getName());
     }
 }
